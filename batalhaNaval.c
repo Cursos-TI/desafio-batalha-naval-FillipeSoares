@@ -73,10 +73,20 @@
         tabuleiro[9][j] = 3;
     }
 
+    //Primeiro navio na Diagonal
+    for (int i = 0; i < 3; i++) {
+    tabuleiro[4 - i][4 - i] = 3;  // Lembre que índices começam em 0, então linha 5 é índice 4
+    }
+
+    //Segundo navio na Diagonal
+    for (int j = 0; j < 3; j++) {
+    tabuleiro[4 - j][4 + j] = 3;  // Lembre que índices começam em 0, então linha 5 é índice 4
+    }
+
     // 🔸 Impressão do cabeçalho das colunas
     printf("\n   ");
     for (int i = 0; i < 10; i++) {
-        printf("%c ", colunas[i]);
+        printf(" %c", colunas[i]);
     }
     printf("\n");
 
@@ -90,32 +100,85 @@
     }
 
 }
-    int main() {
-        exibirtabuleiro5x5();
-        exibirtabuleiro10x10();
-
-    return 0;
-}
-
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
     // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
     // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+
+    void exibirtabuleiro10x10nivelmestre(){
+        char colunas[10] = {'A','B','C','D','E','F', 'G', 'H', 'I', 'J'};
+        int tabuleiro[10][10];
+
+    // 🔸 Inicializa o tabuleiro com 0 (água)
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
 
     // Exemplos de exibição das habilidades:
     // Exemplo para habilidade em cone:
     // 0 0 1 0 0
     // 0 1 1 1 0
     // 1 1 1 1 1
-    
+    //[LINHA][COLUNA]
+    tabuleiro[0][2] = 1; // Topo
+
+    tabuleiro[1][1] = 1;
+    tabuleiro[1][2] = 1;
+    tabuleiro[1][3] = 1;
+
+    for (int j = 0; j <= 4; j++) {
+    tabuleiro[2][j] = 1;
+}
     // Exemplo para habilidade em octaedro:
     // 0 0 1 0 0
     // 0 1 1 1 0
     // 0 0 1 0 0
+    //[LINHA][COLUNA]
+    tabuleiro[3][2] = 1; // Topo
+
+    tabuleiro[4][1] = 1;
+    tabuleiro[4][2] = 1;
+    tabuleiro[4][3] = 1;
+    
+    for (int j = 2; j <= 2; j++) {
+    tabuleiro[5][j] = 1;
+    }
 
     // Exemplo para habilidade em cruz:
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+    //[LINHA][COLUNA]
+    tabuleiro[7][7] = 1; // Topo
+    for (int j = 5; j <= 10; j++) {
+    tabuleiro[8][j] = 1;
+    tabuleiro[9][7] = 1;
+    }
+    
+    // 🔸 Impressão do cabeçalho das colunas
+    printf("\n    ");
+    for (int i = 0; i < 10; i++) {
+        printf(" %c", colunas[i]);
+    }
+    printf("\n");
+
+    // 🔸 Impressão do tabuleiro
+    for (int i = 0; i < 10; i++) {
+        printf(" %2d  ", i + 1); // O "%2d" foi usado para a ultima linha não ficar deslocada por conta do 10 ter dois digitos.
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+}
+    int main() {
+        exibirtabuleiro5x5();
+        exibirtabuleiro10x10();
+        exibirtabuleiro10x10nivelmestre();
+
+    return 0;
+}
 
 
